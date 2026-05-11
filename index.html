@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CodeLearn - Vibrant Modern</title>
+    <style>
+        
+        
+        :root {
+            --bg: linear-gradient(135deg, #f0f4ff, #e0f7fa);
+            --card: #ffffff;
+            --muted: #6b7280;
+            --accent: #2563eb;
+            --accent2: #7c3aed;
+            --success: #16a34a;
+            --danger: #dc2626;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Segoe UI, Roboto, Arial;
+            background: var(--bg);
+            background-attachment: fixed;
+            color: #111;
+        }
+
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Segoe UI, Roboto, Arial;
+            background: var(--bg);
+            color: #111;
+            padding-top: 90px; 
+        }
+
+        header {
+            background: linear-gradient(90deg, #8b5cf6, #6e3c55);
+            color: #fff;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        
+
+        .brand {
+            font-weight: 700;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand img {
+            height: 42px;
+            margin-right: 10px;
+            border-radius: 6px;
+        }
+
+        nav button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid transparent;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        nav button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        nav button.active {
+            background: #fff;
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 28px auto;
+            padding: 16px;
+            background-color: #7634e8;
+        }
+
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+            
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn.success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn.danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn.ghost:hover {
+            background: #f3f4f6;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            width: 100%;
+            font-family: inherit;
+            background-color: rgb(215, 237, 244);
+        
+        }
+
+        textarea {
+            min-height: 220px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid var(--accent);
+            border-color: var(--accent);
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .small {
+            font-size: 13px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        code.block {
+            display: block;
+            white-space: pre-wrap;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            border: 1px solid #e5e7eb;
+        }
+
+        footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(90deg, #8b5cf6, #6e3c55);
+    border-top: 3px solid #7c3aed;
+    margin-top: 40px; /* space above footer */
+    border-radius: 8px 8px 0 0;
+}
+
+
+        #ch-list {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .stats-card p {
+            margin: 4px 0;
+            font-weight: 500;
+            
+        }
+
+        #output {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 6px;
+            padding: 10px;
+            min-height: 80px;
+            font-family: monospace;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* LOADER STYLES */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #e5e7eb;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+  .card {
+    background: linear-gradient(135deg, #f0f4ff, #92dee8);
+    border: 2px solid #0d2fda;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="brand">
+            <img src="./img1.jpeg" alt=""> CodeLearn
+        </div>
+        <nav id="topnav">
+            <button id="nav-landing" class="active">Home</button>
+            <button id="nav-challenges">Challenges</button>
+            <button id="nav-progress">Progress</button>
+            <button id="nav-leaderboard">Leaderboard</button>
+            <span id="auth-area"></span>
+        </nav>
+    </header>
+
+    <!-- GLOBAL LOADER -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+
+    <div class="container">
+        <!-- LANDING -->
+        <section id="landing" class="card">
+            <h1>Welcome to CodeLearn</h1>
+            <p class="muted">
+                Practice coding with real-time challenges alongside CodeLearn.
+            </p>
+            <div style="margin-top:12px">
+                <button id="btn-get-started" class="btn primary">Get Started</button>
+                <button id="btn-browse" class="btn ghost">Browse Challenges</button>
+            </div>
+        </section>
+
+        <!-- AUTH -->
+        <section id="auth" class="card hide">
+            <h2>Sign In / Sign Up</h2>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+                <input id="auth-name" placeholder="Full name (for sign up)" />
+                <input id="auth-email" placeholder="Email" />
+                <input id="auth-pass" placeholder="Password" type="password" />
+            </div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+                <button id="btn-signup" class="btn success">Sign Up</button>
+                <button id="btn-signin" class="btn primary">Sign In</button>
+                <button id="btn-back-landing" class="btn ghost">Back</button>
+            </div>
+        </section>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="card hide">
+            <h2>Dashboard</h2>
+            <div style="display:flex;gap:12px;margin-top:8px;align-items:flex-start">
+                <div style="flex:2">
+                    <div class="card">
+                        <h3>Resume</h3>
+                        <p id="resume-text" class="muted">No active challenge</p>
+                        <button id="btn-resume" class="btn primary">Continue</button>
+                    </div>
+                </div>
+                <div style="flex:1">
+                    <div class="card stats-card">
+                        <h3>Stats</h3>
+                        <p id="stat-completed">Completed: 0 / 0</p>
+                        <p id="stat-percent">Progress: 0%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHALLENGES -->
+        <section id="challenges" class="card hide">
+            <h2>Challenges</h2>
+            <div id="ch-list"></div>
+        </section>
+
+        <!-- EDITOR -->
+        <section id="editor" class="card hide">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <h2 id="editor-title">Editor</h2>
+                <div>
+                    <select id="lang-select">
+                        <option value="71">Python (3.x)</option>
+                        <option value="63">JavaScript (Node.js)</option>
+                        <option value="50">C (gcc)</option>
+                        <option value="62">Java (OpenJDK)</option>
+                    </select>
+                    <button id="btn-run" class="btn primary">Run</button>
+                    <button id="btn-submit" class="btn success">Submit</button>
+                </div>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:12px;align-items:flex-start">
+                <div style="flex:2">
+                    <label class="small">Code</label>
+                    <textarea id="code-area">// Write your code here</textarea>
+                </div>
+                <div style="flex:1">
+                    <div class="card">
+                        <h4>Test Cases</h4>
+                        <div id="testcases" class="small muted">No testcases loaded</div>
+                        <h4 style="margin-top:8px">Input (stdin)</h4>
+                        <textarea id="stdin" class="small" style="min-height:80px"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:12px" class="card">
+                <h4>Output</h4>
+                <pre id="output">(no output)</pre>
+            </div>
+        </section>
+
+        <!-- PROGRESS -->
+        <section id="progress" class="card hide">
+            <h2>Progress</h2>
+            <div id="progress-card" class="card small">No progress yet</div>
+        </section>
+
+        <!-- LEADERBOARD -->
+        <section id="leaderboard" class="card hide">
+            <h2>Leaderboard</h2>
+            <div class="card">
+                <ol id="leader-list"></ol>
+            </div>
+        </section>
+
+        <footer>&copy; 2026 @ CodeLearn. All rights reserved.</footer>
+    </div>
+
+    <script>
+        // CONFIG
+
+        let userCompletedChallenges = new Set();
+
+        const firebaseConfig = window.__FIREBASE_CONFIG__ || {
+            apiKey: "AIzaSyC1dNBshdoYShLS1Ek8iVCEHzIKS_MB4M4",
+            authDomain: "myproject-d079a.firebaseapp.com",
+            projectId: "myproject-d079a",
+            storageBucket: "myproject-d079a.firebasestorage.app",
+            messagingSenderId: "971850739517",
+            appId: "1:971850739517:web:b9926f76500a090bb6df54",
+            measurementId: "G-NM93GTQ3HK"
+        };
+        const JUDGE0_SUBMISSIONS_URL = 'https://judge0-ce.p.rapidapi.com/submissions';
+        const JUDGE0_GET_URL = 'https://judge0-ce.p.rapidapi.com/submissions/';
+        const JUDGE0_API_KEY = "e456ee9105msh021a9b2c032fddap19b06ajsn8a32095fcf40";
+
+        (function loadFirebase() {
+            const load = (src, cb) => { const s = document.createElement('script'); s.src = src; s.onload = cb; document.head.appendChild(s); };
+            load('https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js', () => {
+                load('https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js', () => {
+                    load('https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js', init);
+                });
+            });
+        })();
+
+        let app, auth, db;
+        let challengesList = [];
+
+        function init() {
+            try {
+                app = firebase.initializeApp(firebaseConfig);
+                auth = firebase.auth();
+                db = firebase.firestore();
+
+                auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
+                auth.onAuthStateChanged(onAuthStateChanged);
+            } catch (err) {
+                console.warn('Firebase init failed', err);
+            }
+        }
+
+        const pages = ['landing', 'auth', 'dashboard', 'challenges', 'editor', 'progress', 'leaderboard'];
+        function show(page) {
+            pages.forEach(p => document.getElementById(p).classList.add('hide'));
+            document.getElementById(page).classList.remove('hide');
+        }
+
+        function requireAuth(page) {
+            if (!auth || !auth.currentUser) { alert("Sign in to access " + page); show('auth'); return false; }
+            return true;
+        }
+
+        // ====== LOADER HANDLER ======
+        function showLoader() {
+            const loader = document.getElementById('loader');
+            loader.style.display = 'flex';
+        }
+
+        function hideLoader() {
+            const loader = document.getElementById('loader');
+            loader.style.display = 'none';
+        }
+
+        // Use this wrapper to show loader for 3 seconds
+        async function showLoaderFor3s() {
+            showLoader();
+            await sleep(3000);
+            hideLoader();
+        }
+
+
+        // NAVIGATION
+        document.getElementById('nav-landing').onclick = () => show('landing');
+
+        document.getElementById('nav-challenges').onclick = async () => {
+            if (requireAuth('challenges')) {
+                await showLoaderFor3s();
+                await loadChallenges();
+                show('challenges');
+            }
+        };
+
+        document.getElementById('nav-progress').onclick = async () => {
+            if (requireAuth('dashboard')) {
+                await showLoaderFor3s();
+                await refreshProgress();
+                show('dashboard');
+            }
+        };
+
+        document.getElementById('nav-leaderboard').onclick = async () => {
+            if (requireAuth('leaderboard')) {
+                await showLoaderFor3s();
+                await loadLeaderboard();
+                show('leaderboard');
+            }
+        };
+
+        document.getElementById('btn-get-started').onclick = () => show('auth');
+
+        document.getElementById('btn-browse').onclick = async () => {
+            if (requireAuth('challenges')) {
+                await showLoaderFor3s();
+                await loadChallenges();
+                show('challenges');
+            }
+        };
+        document.getElementById('btn-back-landing').onclick = () => show('landing');
+
+        document.getElementById('btn-signup').onclick = signup;
+        document.getElementById('btn-signin').onclick = signin;
+        document.getElementById('btn-run').onclick = runCode;
+        document.getElementById('btn-submit').onclick = submitSolution;
+
+        function onAuthStateChanged(user) {
+            renderAuthArea(user);
+            show('landing');
+        }
+
+        function renderAuthArea(user) {
+            const area = document.getElementById('auth-area');
+            area.innerHTML = '';
+            if (user) {
+                const name = user.displayName || user.email || 'U';
+                const firstLetter = name.charAt(0).toUpperCase();
+
+                // Generate a consistent color from string
+                function stringToColor(str) {
+                    let hash = 0;
+                    for (let i = 0; i < str.length; i++) {
+                        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+                    }
+                    let color = '#';
+                    for (let i = 0; i < 3; i++) {
+                        const value = (hash >> (i * 8)) & 0xFF;
+                        color += ('00' + value.toString(16)).slice(-2);
+                    }
+                    return color;
+                }
+
+                const avatar = document.createElement('div');
+                avatar.textContent = firstLetter;
+                avatar.style.display = 'inline-flex';
+                avatar.style.alignItems = 'center';
+                avatar.style.justifyContent = 'center';
+                avatar.style.width = '32px';
+                avatar.style.height = '32px';
+                avatar.style.borderRadius = '50%';
+                avatar.style.background = stringToColor(name);
+                avatar.style.color = '#fff';
+                avatar.style.fontWeight = '700';
+                avatar.style.fontSize = '16px';
+                avatar.style.marginRight = '8px';
+
+                const out = document.createElement('button');
+                out.className = 'btn';
+                out.textContent = 'Sign Out';
+                out.onclick = async () => {
+                    const confirmSignOut = confirm('Are you sure you want to sign out?');
+                    if (!confirmSignOut) return;
+                    try {
+                        await auth.signOut();
+                    } catch (e) {
+                        alert('Sign out failed: ' + e.message);
+                    }
+                };
+
+                area.appendChild(avatar);
+                area.appendChild(out);
+            } else {
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.textContent = 'Sign In';
+                btn.onclick = () => show('auth');
+                area.appendChild(btn);
+            }
+        }
+
+
+        // function renderAuthArea(user) {
+        //     const area = document.getElementById('auth-area');
+        //     area.innerHTML = '';
+        //     if (user) {
+        //         const span = document.createElement('span');
+        //         span.textContent = user.displayName || user.email;
+        //         span.style.marginRight = '8px';
+
+        //         const out = document.createElement('button');
+        //         out.className = 'btn';
+        //         out.textContent = 'Sign Out';
+        //         out.onclick = async () => {
+        //             const confirmSignOut = confirm('Are you sure you want to sign out?');
+        //             if (!confirmSignOut) return;
+        //             try {
+        //                 await auth.signOut();
+        //             } catch (e) {
+        //                 alert('Sign out failed: ' + e.message);
+        //             }
+        //         };
+
+        //         area.appendChild(span);
+        //         area.appendChild(out);
+        //     } else {
+        //         const btn = document.createElement('button');
+        //         btn.className = 'btn';
+        //         btn.textContent = 'Sign In';
+        //         btn.onclick = () => show('auth');
+        //         area.appendChild(btn);
+        //     }
+        // }
+
+        async function signup() {
+            const email = document.getElementById('auth-email').value;
+            const pass = document.getElementById('auth-pass').value;
+            const name = document.getElementById('auth-name').value || '';
+            if (!email || !pass) return alert('Please provide email and password.');
+            try {
+                const cred = await auth.createUserWithEmailAndPassword(email, pass);
+                if (name) await cred.user.updateProfile({ displayName: name });
+                await db.collection('users').doc(cred.user.uid).set({ email: cred.user.email, name: cred.user.displayName || name });
+            } catch (err) { alert('Sign up failed: ' + (err.message || err)); }
+        }
+        async function signin() {
+            const email = document.getElementById('auth-email').value;
+            const pass = document.getElementById('auth-pass').value;
+            if (!email || !pass) return alert('Please enter email and password');
+
+            try {
+                await auth.signInWithEmailAndPassword(email, pass);
+            } catch (err) {
+                let msg = 'Sign in failed';
+                if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+                    msg = 'Invalid username/password';
+                } else if (err.code === 'auth/invalid-email') {
+                    msg = 'Invalid email format';
+                } else {
+                    msg = err.message || msg;
+                }
+                alert(msg);
+            }
+        }
+        const fallbackChallenges = [
+            { id: 'c1', title: 'Palindrome Check', difficulty: 'Beginner', description: 'Check if string is palindrome', testcases: [{ in: 'madam', out: 'yes' }] },
+
+            { id: 'c2', title: 'Largest Element in List', difficulty: 'Beginner', description: 'Find largest element in list', testcases: [{ in: '10 20 30 40 50', out: '50' }] },
+
+            { id: 'c3', title: 'Smallest Element in List', difficulty: 'Beginner', description: 'Find smallest element in list', testcases: [{ in: '10 20 30 40 50', out: '10' }] },
+
+            { id: 'c4', title: 'Strong Number', difficulty: 'Intermediate', description: 'Check if number is strong number', testcases: [{ in: '145', out: 'yes' }] },
+
+            { id: 'c5', title: 'Count Frequency of Elements', difficulty: 'Intermediate', description: 'Count frequency of elements in list', testcases: [{ in: '1 2 4 1 3 2 4 5', out: '{1:2,2:2,4:2,3:1,5:1}' }] },
+
+            { id: 'c6', title: 'Common Elements', difficulty: 'Beginner', description: 'Find common elements between two lists', testcases: [{ in: '1 2 3 4 5\n6 7 8 9 5', out: '[5]' }] },
+
+            { id: 'c7', title: 'Second Largest Number', difficulty: 'Intermediate', description: 'Find second largest number', testcases: [{ in: '10 20 30 40 50', out: '40' }] },
+
+            { id: 'c8', title: 'Print 1 to 10', difficulty: 'Beginner', description: 'Print numbers from 1 to 10', testcases: [{ in: '', out: '1 2 3 4 5 6 7 8 9 10' }] },
+
+            { id: 'c9', title: 'Print 10 to 1', difficulty: 'Beginner', description: 'Print numbers from 10 to 1', testcases: [{ in: '', out: '10 9 8 7 6 5 4 3 2 1' }] },
+
+            { id: 'c11', title: 'Remove Duplicates', difficulty: 'Beginner', description: 'Remove duplicates from list', testcases: [{ in: '1 2 3 1 2 3', out: '1 2 3' }] },
+
+            { id: 'c12', title: 'Even or Odd', difficulty: 'Beginner', description: 'Check whether number is even or odd', testcases: [{ in: '10', out: 'even' }] },
+
+            { id: 'c13', title: 'Multiplication Table', difficulty: 'Beginner', description: 'Print multiplication table', testcases: [{ in: '2', out: '2 4 6 8 10 12 14 16 18 20' }] },
+
+            { id: 'c14', title: 'Fibonacci Sequence', difficulty: 'Beginner', description: 'Generate fibonacci sequence', testcases: [{ in: '5', out: '0 1 1 2 3' }] },
+
+            { id: 'c15', title: 'Sum of Digits', difficulty: 'Beginner', description: 'Find sum of digits', testcases: [{ in: '123', out: '6' }] },
+
+            { id: 'c16', title: 'Uppercase First Then Lowercase', difficulty: 'Intermediate', description: 'Print uppercase letters first followed by lowercase letters', testcases: [{ in: 'HeLLo', out: 'HLLeo' }] },
+
+            { id: 'c17', title: 'Remove Spaces', difficulty: 'Beginner', description: 'Remove spaces from string', testcases: [{ in: 'hello world', out: 'helloworld' }] },
+
+            { id: 'c18', title: 'Remove Non Alphabets', difficulty: 'Intermediate', description: 'Remove all non alphabet characters', testcases: [{ in: 'abc123@#', out: 'abc' }] },
+
+            { id: 'c19', title: 'Remove Brackets', difficulty: 'Beginner', description: 'Remove brackets from string', testcases: [{ in: '(hello)', out: 'hello' }] },
+
+            { id: 'c20', title: 'Alphabet Numbering', difficulty: 'Intermediate', description: 'Add numbering to alphabets', testcases: [{ in: 'abc', out: 'a1b2c3' }] },
+
+            { id: 'c21', title: 'First and Last Uppercase', difficulty: 'Intermediate', description: 'Convert first and last letters into uppercase', testcases: [{ in: 'hello world', out: 'HellO WorlD' }] },
+
+            { id: 'c22', title: 'Harshad Number', difficulty: 'Intermediate', description: 'Check if number is harshad number', testcases: [{ in: '18', out: 'yes' }] },
+
+            { id: 'c23', title: 'Remove Even Numbers', difficulty: 'Beginner', description: 'Remove all even numbers from list', testcases: [{ in: '1 2 3 4 5 6', out: '1 3 5' }] },
+
+            { id: 'c24', title: 'Print Even Numbers', difficulty: 'Beginner', description: 'Print even numbers from 1 to 20', testcases: [{ in: '', out: '2 4 6 8 10 12 14 16 18 20' }] },
+
+            { id: 'c25', title: 'Count Even and Odd', difficulty: 'Beginner', description: 'Count even and odd numbers in list', testcases: [{ in: '1 2 3 4 5 6 7 8 9', out: '4 5' }] },
+
+            { id: 'c26', title: 'Divisible by 3 and 5', difficulty: 'Beginner', description: 'Print numbers divisible by 3 and 5', testcases: [{ in: '', out: '15 30 45 60 75 90' }] },
+            { id: 'c61', title: 'Middle Character', difficulty: 'Beginner', description: 'Find middle character(s) of string', testcases: [{ in: 'madam', out: 'd' }] },
+
+{ id: 'c62', title: 'Rotate Array', difficulty: 'Intermediate', description: 'Rotate array to right by k steps', testcases: [{ in: '1 2 3 4 5\n2', out: '4 5 1 2 3' }] },
+
+{ id: 'c63', title: 'Common Elements', difficulty: 'Beginner', description: 'Find common elements between arrays', testcases: [{ in: '1 2 3\n2 3 4', out: '2 3' }] },
+
+{ id: 'c64', title: 'Missing Number', difficulty: 'Beginner', description: 'Find missing number in sequence', testcases: [{ in: '1 2 4 5', out: '3' }] },
+
+{ id: 'c65', title: 'Maximum Product', difficulty: 'Intermediate', description: 'Find maximum product of two numbers', testcases: [{ in: '3 5 -2 8 11', out: '88' }] },
+
+{ id: 'c66', title: 'Move Zeros', difficulty: 'Beginner', description: 'Move all zeros to end', testcases: [{ in: '0 1 0 3 12', out: '1 3 12 0 0' }] },
+
+{ id: 'c67', title: 'Pair Sum', difficulty: 'Intermediate', description: 'Find pairs with target sum', testcases: [{ in: '2 4 3 5 7 8 9\n7', out: '[4,3] [2,5]' }] },
+
+{ id: 'c68', title: 'Peak Element', difficulty: 'Beginner', description: 'Find peak element in array', testcases: [{ in: '1 3 20 4 1 0', out: '20' }] },
+
+{ id: 'c69', title: 'First Duplicate', difficulty: 'Beginner', description: 'Find first duplicate value', testcases: [{ in: '2 1 3 5 3 2', out: '3' }] },
+
+{ id: 'c70', title: 'Flatten Nested Array', difficulty: 'Advanced', description: 'Flatten nested array', testcases: [{ in: '[1,[2,[3,[4]],5]]', out: '1 2 3 4 5' }] },
+
+{ id: 'c71', title: 'Group Anagrams', difficulty: 'Advanced', description: 'Group words that are anagrams', testcases: [{ in: 'eat tea tan ate nat bat', out: '[eat tea ate] [tan nat] [bat]' }] },
+
+{ id: 'c72', title: 'Matrix Creation', difficulty: 'Beginner', description: 'Convert empty list into matrix', testcases: [{ in: '[]', out: '[[1,2,3],[4,5,6],[7,8,9]]' }] },
+
+{ id: 'c73', title: 'Even Odd Rearrange', difficulty: 'Intermediate', description: 'Move even numbers before odd numbers', testcases: [{ in: '3 1 2 4 7 6 5', out: '2 4 6 3 1 7 5' }] },
+
+{ id: 'c74', title: 'Longest Word', difficulty: 'Beginner', description: 'Find longest word in sentence', testcases: [{ in: 'The quick brown fox jumps over the lazy dog', out: 'jumps' }] },
+
+{ id: 'c75', title: 'Check Anagram', difficulty: 'Beginner', description: 'Check if strings are anagrams', testcases: [{ in: 'listen\nsilent', out: 'true' }] },
+
+{ id: 'c76', title: 'First Non Repeating Character', difficulty: 'Intermediate', description: 'Find first non repeating character', testcases: [{ in: 'swiss', out: 'w' }] },
+
+{ id: 'c77', title: 'First Repeating Character', difficulty: 'Intermediate', description: 'Find first repeating character', testcases: [{ in: 'swiss', out: 's' }] },
+
+{ id: 'c78', title: 'Repeating Characters', difficulty: 'Intermediate', description: 'Print repeating characters', testcases: [{ in: 'swiss', out: 'sss' }] },
+
+{ id: 'c79', title: 'Valid Number', difficulty: 'Beginner', description: 'Check if string is valid number', testcases: [{ in: '123.45', out: 'true' }] },
+
+{ id: 'c80', title: 'Reverse Words', difficulty: 'Beginner', description: 'Reverse order of words', testcases: [{ in: 'hello world', out: 'world hello' }] },
+
+{ id: 'c81', title: 'String Compression', difficulty: 'Intermediate', description: 'Compress repeated characters', testcases: [{ in: 'aabcccccaaa', out: 'a2b1c5a3' }] },
+
+{ id: 'c82', title: 'String Permutations', difficulty: 'Advanced', description: 'Find all permutations of string', testcases: [{ in: 'abc', out: 'abc acb bac bca cab cba' }] },
+
+{ id: 'c83', title: 'Longest Unique Substring', difficulty: 'Advanced', description: 'Find longest substring without repeating characters', testcases: [{ in: 'abcabcbb', out: '3' }] },
+
+{ id: 'c84', title: 'Longest Palindrome Substring', difficulty: 'Advanced', description: 'Find longest palindromic substring', testcases: [{ in: 'babad', out: 'bab' }] },
+
+{ id: 'c85', title: 'Isomorphic Strings', difficulty: 'Advanced', description: 'Check if strings are isomorphic', testcases: [{ in: 'egg\nadd', out: 'true' }] },
+
+{ id: 'c86', title: 'Calculator', difficulty: 'Beginner', description: 'Perform arithmetic operations', testcases: [{ in: '10\n20\n+', out: '30' }] },
+
+{ id: 'c87', title: 'FizzBuzz', difficulty: 'Beginner', description: 'Print fizz buzz sequence', testcases: [{ in: '15', out: '1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz' }] },
+
+{ id: 'c88', title: 'Fibonacci Function', difficulty: 'Beginner', description: 'Generate fibonacci sequence', testcases: [{ in: '5', out: '0 1 1 2 3' }] },
+
+{ id: 'c89', title: 'Sum Of Digits Function', difficulty: 'Beginner', description: 'Find sum of digits', testcases: [{ in: '123', out: '6' }] },
+        // const fallbackChallenges = [
+        //     { id: 'c1', title: 'Sum of Array', difficulty: 'Beginner', description: 'Sum numbers (space-separated)', testcases: [{ in: '1 2 3', out: '6' }] },
+        //     { id: 'c2', title: 'Reverse String', difficulty: 'Beginner', description: 'Reverse input string', testcases: [{ in: 'hello', out: 'olleh' }] },
+        //     { id: 'c3', title: 'Two Sum', difficulty: 'Intermediate', description: 'Find pair indices', testcases: [{ in: '[2,7,11,15]\n9', out: '0,1' }] },
+        //     { id: 'c4', title: 'Palindrome Check', difficulty: 'Beginner', description: 'Check if string is palindrome', testcases: [{ in: 'madam', out: 'true' }] },
+        //     { id: 'c5', title: 'Factorial', difficulty: 'Beginner', description: 'Compute factorial of a number', testcases: [{ in: '5', out: '120' }] },
+        //     { id: 'c6', title: 'Fibonacci Sequence', difficulty: 'Beginner', description: 'Generate first N Fibonacci numbers', testcases: [{ in: '5', out: '0 1 1 2 3' }] },
+        //     { id: 'c7', title: 'Greatest Common Divisor', difficulty: 'Intermediate', description: 'Find GCD of two numbers', testcases: [{ in: '48 18', out: '6' }] },
+        //     { id: 'c8', title: 'Least Common Multiple', difficulty: 'Intermediate', description: 'Find LCM of two numbers', testcases: [{ in: '4 6', out: '12' }] },
+        //     { id: 'c9', title: 'Prime Check', difficulty: 'Beginner', description: 'Check if number is prime', testcases: [{ in: '7', out: 'true' }] },
+        //     { id: 'c10', title: 'Prime Factors', difficulty: 'Intermediate', description: 'Find prime factors of number', testcases: [{ in: '28', out: '2 2 7' }] },
+        //     { id: 'c11', title: 'Anagram Check', difficulty: 'Intermediate', description: 'Check if two strings are anagrams', testcases: [{ in: 'listen\nsilent', out: 'true' }] },
+        //     { id: 'c12', title: 'Count Vowels', difficulty: 'Beginner', description: 'Count vowels in a string', testcases: [{ in: 'hello world', out: '3' }] },
+        //     { id: 'c13', title: 'Remove Duplicates', difficulty: 'Intermediate', description: 'Remove duplicates from array', testcases: [{ in: '1 2 2 3 4 4', out: '1 2 3 4' }] },
+        //     { id: 'c14', title: 'Find Max', difficulty: 'Beginner', description: 'Find maximum number in array', testcases: [{ in: '1 5 3 9 2', out: '9' }] },
+        //     { id: 'c15', title: 'Find Min', difficulty: 'Beginner', description: 'Find minimum number in array', testcases: [{ in: '4 7 1 8', out: '1' }] },
+        //     { id: 'c16', title: 'Sort Array', difficulty: 'Beginner', description: 'Sort array in ascending order', testcases: [{ in: '3 1 4 2', out: '1 2 3 4' }] },
+        //     { id: 'c17', title: 'Binary Search', difficulty: 'Intermediate', description: 'Find index of target using binary search', testcases: [{ in: '1 2 3 4 5\n4', out: '3' }] },
+        //     { id: 'c18', title: 'Linear Search', difficulty: 'Beginner', description: 'Find index using linear search', testcases: [{ in: '5 7 9 11\n9', out: '2' }] },
+        //     { id: 'c19', title: 'Rotate Array', difficulty: 'Intermediate', description: 'Rotate array by k steps', testcases: [{ in: '1 2 3 4 5\n2', out: '4 5 1 2 3' }] },
+        //     { id: 'c20', title: 'Merge Sorted Arrays', difficulty: 'Intermediate', description: 'Merge two sorted arrays', testcases: [{ in: '1 3 5\n2 4 6', out: '1 2 3 4 5 6' }] },
+        //     { id: 'c21', title: 'Matrix Transpose', difficulty: 'Intermediate', description: 'Find transpose of a matrix', testcases: [{ in: '1 2\n3 4', out: '1 3\n2 4' }] },
+        //     { id: 'c22', title: 'Matrix Multiplication', difficulty: 'Advanced', description: 'Multiply two matrices', testcases: [{ in: '[[1,2],[3,4]]\n[[5,6],[7,8]]', out: '[[19,22],[43,50]]' }] },
+        //     { id: 'c23', title: 'Valid Parentheses', difficulty: 'Intermediate', description: 'Check if parentheses are valid', testcases: [{ in: '()[]{}', out: 'true' }] },
+        //     { id: 'c24', title: 'Balanced Brackets', difficulty: 'Intermediate', description: 'Check balanced brackets', testcases: [{ in: '{[()]}', out: 'true' }] },
+        //     { id: 'c25', title: 'Roman to Integer', difficulty: 'Intermediate', description: 'Convert Roman numeral to integer', testcases: [{ in: 'XIV', out: '14' }] },
+        //     { id: 'c26', title: 'Integer to Roman', difficulty: 'Advanced', description: 'Convert integer to Roman numeral', testcases: [{ in: '58', out: 'LVIII' }] },
+        //     { id: 'c27', title: 'Longest Common Prefix', difficulty: 'Intermediate', description: 'Find longest common prefix among strings', testcases: [{ in: 'flower flow flight', out: 'fl' }] },
+        //     { id: 'c28', title: 'Longest Palindrome Substring', difficulty: 'Advanced', description: 'Find longest palindromic substring', testcases: [{ in: 'babad', out: 'bab' }] },
+        //     { id: 'c29', title: 'String Compression', difficulty: 'Intermediate', description: 'Compress string with counts', testcases: [{ in: 'aabbccc', out: 'a2b2c3' }] },
+        //     { id: 'c30', title: 'Word Count', difficulty: 'Beginner', description: 'Count words in string', testcases: [{ in: 'I love coding', out: '3' }] },
+        //     { id: 'c31', title: 'Armstrong Number', difficulty: 'Beginner', description: 'Check if number is Armstrong number', testcases: [{ in: '153', out: 'true' }] },
+        //     { id: 'c32', title: 'Perfect Number', difficulty: 'Intermediate', description: 'Check if number is Perfect number', testcases: [{ in: '28', out: 'true' }] },
+        //     { id: 'c33', title: 'Strong Number', difficulty: 'Intermediate', description: 'Check if number is Strong number', testcases: [{ in: '145', out: 'true' }] },
+        //     { id: 'c34', title: 'Leap Year', difficulty: 'Beginner', description: 'Check if year is leap year', testcases: [{ in: '2024', out: 'true' }] },
+        //     { id: 'c35', title: 'Power of Two', difficulty: 'Beginner', description: 'Check if number is power of 2', testcases: [{ in: '16', out: 'true' }] },
+        //     { id: 'c36', title: 'Square Root', difficulty: 'Beginner', description: 'Find square root (integer)', testcases: [{ in: '16', out: '4' }] },
+        //     { id: 'c37', title: 'Climb Stairs', difficulty: 'Intermediate', description: 'Count ways to climb stairs', testcases: [{ in: '3', out: '3' }] },
+        //     { id: 'c38', title: 'Coin Change', difficulty: 'Advanced', description: 'Minimum coins to make amount', testcases: [{ in: '11\n1 2 5', out: '3' }] },
+        //     { id: 'c39', title: 'Longest Increasing Subsequence', difficulty: 'Advanced', description: 'Find LIS length', testcases: [{ in: '10 9 2 5 3 7 101 18', out: '4' }] },
+        //     { id: 'c40', title: 'Max Subarray Sum', difficulty: 'Intermediate', description: 'Find maximum subarray sum', testcases: [{ in: '-2 1 -3 4 -1 2 1 -5 4', out: '6' }] },
+        //     { id: 'c41', title: 'Unique Paths', difficulty: 'Advanced', description: 'Count unique paths in grid', testcases: [{ in: '3 7', out: '28' }] },
+        //     { id: 'c42', title: 'Sudoku Validator', difficulty: 'Advanced', description: 'Validate Sudoku board', testcases: [{ in: 'valid sudoku board', out: 'true' }] },
+        //     { id: 'c43', title: 'Sudoku Solver', difficulty: 'Advanced', description: 'Solve Sudoku puzzle', testcases: [{ in: 'incomplete board', out: 'solved board' }] },
+        //     { id: 'c44', title: 'N-Queens', difficulty: 'Advanced', description: 'Place N queens on chessboard', testcases: [{ in: '4', out: '2' }] },
+        //     { id: 'c45', title: 'Knight Moves', difficulty: 'Intermediate', description: 'Find min knight moves', testcases: [{ in: '0 0\n7 7', out: '6' }] },
+        //     { id: 'c46', title: 'Word Search', difficulty: 'Advanced', description: 'Check if word exists in grid', testcases: [{ in: 'ABCE\nSFCS\nADEE\nword=SEE', out: 'true' }] },
+        //     { id: 'c47', title: 'Island Count', difficulty: 'Intermediate', description: 'Count islands in grid', testcases: [{ in: 'grid with islands', out: '5' }] },
+        //     { id: 'c48', title: 'Snake Game Simulation', difficulty: 'Advanced', description: 'Simulate snake movement', testcases: [{ in: 'grid+moves', out: 'final length' }] },
+        //     { id: 'c49', title: 'Game of Life', difficulty: 'Advanced', description: 'Simulate Conway’s Game of Life', testcases: [{ in: 'board', out: 'next state' }] },
+        //     { id: 'c50', title: 'LRU Cache', difficulty: 'Advanced', description: 'Implement LRU Cache', testcases: [{ in: 'put/get ops', out: 'expected output' }] },
+        //     { id: 'c51', title: 'Median of Two Sorted Arrays', difficulty: 'Advanced', description: 'Find median of two sorted arrays', testcases: [{ in: '1 3\n2', out: '2.0' }] },
+        //     { id: 'c52', title: 'Sum of Digits', difficulty: 'Beginner', description: 'Sum digits in a number', testcases: [{ in: '123', out: '6' }] },
+        //     { id: 'c53', title: 'Count Odd Numbers', difficulty: 'Beginner', description: 'Count odd numbers in array', testcases: [{ in: '1 2 3 4 5', out: '3' }] },
+        //     { id: 'c54', title: 'Reverse Words', difficulty: 'Beginner', description: 'Reverse each word in string', testcases: [{ in: 'hello world', out: 'olleh dlrow' }] },
+        //     { id: 'c55', title: 'Is Prime', difficulty: 'Beginner', description: 'Determine if number is prime', testcases: [{ in: '17', out: 'true' }] },
+        //     { id: 'c56', title: 'Last Digit', difficulty: 'Beginner', description: 'Return last digit of number', testcases: [{ in: '158', out: '8' }] },
+        //     { id: 'c57', title: 'Factor Count', difficulty: 'Beginner', description: 'Count the factors of number', testcases: [{ in: '12', out: '6' }] },
+        //     { id: 'c58', title: 'Isogram Check', difficulty: 'Intermediate', description: 'Is string an isogram?', testcases: [{ in: 'lamp', out: 'true' }] },
+        //     { id: 'c59', title: 'Count Spaces', difficulty: 'Beginner', description: 'Number of spaces in string', testcases: [{ in: 'a b c', out: '2' }] },
+        //     { id: 'c60', title: 'Sum of Multiples', difficulty: 'Beginner', description: 'Sum multiples of N up to X', testcases: [{ in: '5 15', out: '30' }] },
+            
+           /* { id: 'c61', title: 'First Unique Char', difficulty: 'Intermediate', description: 'Index of first non-repeating char', testcases: [{ in: 'swiss', out: '1' }] },
+            { id: 'c62', title: 'Extract Domain', difficulty: 'Intermediate', description: 'Extract domain from email', testcases: [{ in: 'user@domain.com', out: 'domain.com' }] },
+            { id: 'c63', title: 'Lexicographical Order', difficulty: 'Beginner', description: 'Sort words alphabetically', testcases: [{ in: 'dog cat apple', out: 'apple cat dog' }] },
+            { id: 'c64', title: 'Calculate Power', difficulty: 'Beginner', description: 'Compute a^b', testcases: [{ in: '2 3', out: '8' }] },
+            { id: 'c65', title: 'Capitalize String', difficulty: 'Beginner', description: 'Capitalize each word', testcases: [{ in: 'hello world', out: 'Hello World' }] },
+            { id: 'c66', title: 'Count Uppercase', difficulty: 'Beginner', description: 'Count uppercase letters', testcases: [{ in: 'Hi There', out: '2' }] },
+            { id: 'c67', title: 'ASCII Sum', difficulty: 'Intermediate', description: 'Sum ASCII values of string', testcases: [{ in: 'AB', out: '131' }] },
+            { id: 'c68', title: 'Reverse Integer', difficulty: 'Beginner', description: 'Reverse the digits', testcases: [{ in: '321', out: '123' }] },
+            { id: 'c69', title: 'Sum Matrix Rows', difficulty: 'Intermediate', description: 'Sum each row in matrix', testcases: [{ in: '1 2\n3 4', out: '3 7' }] },
+            { id: 'c70', title: 'Count Digits', difficulty: 'Beginner', description: 'Number of digits in integer', testcases: [{ in: '9000', out: '4' }] },
+            { id: 'c71', title: 'Sum Odd Indexed', difficulty: 'Beginner', description: 'Sum elements at odd indices', testcases: [{ in: '9 3 8 2 1', out: '5' }] },
+            { id: 'c72', title: 'Insert At Index', difficulty: 'Beginner', description: 'Insert X at index I in array', testcases: [{ in: '1 3 4\n6 1', out: '1 6 3 4' }] },
+            { id: 'c73', title: 'Check Pangram', difficulty: 'Intermediate', description: 'Is string a pangram?', testcases: [{ in: 'the quick brown fox jumps over the lazy dog', out: 'true' }] },
+            { id: 'c74', title: 'Count Consonants', difficulty: 'Beginner', description: 'Count consonants in string', testcases: [{ in: 'hello', out: '3' }] },
+            { id: 'c75', title: 'Find Intersection', difficulty: 'Intermediate', description: 'Intersection of two arrays', testcases: [{ in: '1 2 3\n2 3 4', out: '2 3' }] },
+            { id: 'c76', title: 'Longest Word', difficulty: 'Beginner', description: 'Find the longest word', testcases: [{ in: 'fly spider caterpillar', out: 'caterpillar' }] },
+            { id: 'c77', title: 'Prefix Search', difficulty: 'Intermediate', description: 'Words with prefix', testcases: [{ in: 'apple ape apricot\nap', out: 'apple ape apricot' }] },
+            { id: 'c78', title: 'Sum of Series', difficulty: 'Beginner', description: 'Sum 1 + 2 + ... + N', testcases: [{ in: '4', out: '10' }] },
+            { id: 'c79', title: 'Remove Vowels', difficulty: 'Beginner', description: 'Remove vowels from string', testcases: [{ in: 'banana', out: 'bnn' }] },
+            { id: 'c80', title: 'Find Median', difficulty: 'Intermediate', description: 'Find median in array', testcases: [{ in: '7 4 3', out: '4' }] },
+            { id: 'c81', title: 'Sort Descending', difficulty: 'Beginner', description: 'Sort array descending', testcases: [{ in: '2 4 1', out: '4 2 1' }] },
+            { id: 'c82', title: 'Generate Random', difficulty: 'Beginner', description: 'Generate N random numbers', testcases: [{ in: '5', out: 'random' }] },
+            { id: 'c83', title: 'Zip Arrays', difficulty: 'Intermediate', description: 'Zip two arrays elementwise', testcases: [{ in: '1 2\n3 4', out: '1 3 2 4' }] },
+            { id: 'c84', title: 'Caesar Cipher', difficulty: 'Intermediate', description: 'Encrypt with Caesar cipher', testcases: [{ in: 'abc 2', out: 'cde' }] },
+            { id: 'c85', title: 'Count Negatives', difficulty: 'Beginner', description: 'Count negative numbers in array', testcases: [{ in: '-1 2 -3 4', out: '2' }] },
+            { id: 'c86', title: 'Sum Even', difficulty: 'Beginner', description: 'Sum even numbers only', testcases: [{ in: '2 3 4 5 6', out: '12' }] },
+            { id: 'c87', title: 'Find Gaps', difficulty: 'Intermediate', description: 'Return missing numbers in sequence', testcases: [{ in: '1 2 4 6', out: '3 5' }] },
+            { id: 'c88', title: 'Count Palindromes', difficulty: 'Intermediate', description: 'Count palindromic substrings', testcases: [{ in: 'aaa', out: '6' }] },
+            { id: 'c89', title: 'Replace Character', difficulty: 'Beginner', description: 'Replace all X with Y', testcases: [{ in: 'axbxcdx x z', out: 'azbzczdz' }] },
+            { id: 'c90', title: 'First Difference', difficulty: 'Beginner', description: 'First differing index of two strings', testcases: [{ in: 'robot rabbit', out: '2' }] },
+            { id: 'c91', title: 'Find Range', difficulty: 'Beginner', description: 'Find range (max-min)', testcases: [{ in: '3 8 5', out: '5' }] },
+            { id: 'c92', title: 'Multiply Array', difficulty: 'Beginner', description: 'Product of all elements', testcases: [{ in: '3 4 5', out: '60' }] },
+            { id: 'c93', title: 'Count Subsets', difficulty: 'Intermediate', description: 'Count subsets of set', testcases: [{ in: '1 2 3', out: '8' }] },
+            { id: 'c94', title: 'Binary Count', difficulty: 'Beginner', description: 'Count ones in binary', testcases: [{ in: '13', out: '3' }] },
+            { id: 'c95', title: 'Find Mode', difficulty: 'Intermediate', description: 'Most frequent number', testcases: [{ in: '1 2 2 3', out: '2' }] },
+            { id: 'c96', title: 'Uppercase Count', difficulty: 'Beginner', description: 'Count uppercase in string', testcases: [{ in: 'Hi There', out: '2' }] },
+            { id: 'c97', title: 'Remove Duplicates (String)', difficulty: 'Intermediate', description: 'Remove duplicate letters', testcases: [{ in: 'banana', out: 'ban' }] },
+            { id: 'c98', title: 'Parse Date', difficulty: 'Intermediate', description: 'Return year from date string', testcases: [{ in: '2021-08-19', out: '2021' }] },
+            { id: 'c99', title: 'Matrix Border Sum', difficulty: 'Intermediate', description: 'Sum the border elements', testcases: [{ in: '1 2 3\n4 5 6\n7 8 9', out: '40' }] },
+            { id: 'c100', title: 'Count Characters', difficulty: 'Beginner', description: 'Count characters in string', testcases: [{ in: 'abcd', out: '4' }] },
+
+            { id: 'c101', title: 'Nth Fibonacci', difficulty: 'Beginner', description: 'Find the Nth Fibonacci number', testcases: [{ in: '7', out: '13' }] },
+            { id: 'c102', title: 'Palindrome Number List', difficulty: 'Intermediate', description: 'List all palindrome numbers in range', testcases: [{ in: '10 50', out: '11 22 33 44' }] },
+            { id: 'c103', title: 'Remove Smallest', difficulty: 'Beginner', description: 'Remove smallest number from array', testcases: [{ in: '5 3 8 1 4', out: '5 3 8 4' }] },
+            { id: 'c104', title: 'String Reversal', difficulty: 'Beginner', description: 'Reverse the whole input string', testcases: [{ in: 'abcd', out: 'dcba' }] },
+            { id: 'c105', title: 'Sum of Cubes', difficulty: 'Beginner', description: 'Sum the cubes of list numbers', testcases: [{ in: '2 3', out: '35' }] },
+            { id: 'c106', title: 'Remove First Occurrence', difficulty: 'Beginner', description: 'Remove first occurrence of X from array', testcases: [{ in: '2 4 3 2 5\n2', out: '4 3 2 5' }] },
+            { id: 'c107', title: 'Replace Vowels', difficulty: 'Beginner', description: 'Replace vowels in string with *', testcases: [{ in: 'education', out: '*d*c*t**n' }] },
+            { id: 'c108', title: 'Max Digit', difficulty: 'Beginner', description: 'Find largest digit in a number', testcases: [{ in: '68729', out: '9' }] },
+            { id: 'c109', title: 'Frequency Map', difficulty: 'Intermediate', description: 'Count frequency of each number', testcases: [{ in: '1 2 2 3 3 3', out: '1:1 2:2 3:3' }] },
+            { id: 'c110', title: 'Second Smallest', difficulty: 'Beginner', description: 'Find second smallest number', testcases: [{ in: '3 1 4 2', out: '2' }] },
+            { id: 'c111', title: 'Array Sum Modulo', difficulty: 'Beginner', description: 'Return sum of array modulo M', testcases: [{ in: '3 7 8 10\n5', out: '3' }] },
+            { id: 'c112', title: 'Array Prefix Sum', difficulty: 'Intermediate', description: 'Find prefix sum array', testcases: [{ in: '1 2 3 4', out: '1 3 6 10' }] },
+            { id: 'c113', title: 'Sentence Word Count', difficulty: 'Beginner', description: 'Count the words in a sentence', testcases: [{ in: 'I love openAI.', out: '3' }] },
+            { id: 'c114', title: 'Is Subarray', difficulty: 'Intermediate', description: 'Check if one array is subarray of another', testcases: [{ in: '1 2 3 4 5\n3 4', out: 'true' }] },
+            { id: 'c115', title: 'Pair Sum', difficulty: 'Intermediate', description: 'Count pairs summing to K', testcases: [{ in: '1 5 7 -1\n6', out: '2' }] },
+            { id: 'c116', title: 'String Contains Digit', difficulty: 'Beginner', description: 'Does string contain a digit?', testcases: [{ in: 'abc3xyz', out: 'true' }] },
+            { id: 'c117', title: 'Remove All Spaces', difficulty: 'Beginner', description: 'Remove all whitespace', testcases: [{ in: 'the   quick    fox', out: 'thequickfox' }] },
+            { id: 'c118', title: 'Count Lowercase', difficulty: 'Beginner', description: 'Count lowercase letters', testcases: [{ in: 'HelLo', out: '3' }] },
+            { id: 'c119', title: 'Remove Duplicates in String', difficulty: 'Intermediate', description: 'Remove duplicate letters in a string', testcases: [{ in: 'google', out: 'gole' }] },
+            { id: 'c120', title: 'Decimal to Hex', difficulty: 'Intermediate', description: 'Convert decimal number to hex', testcases: [{ in: '31', out: '1f' }] },
+            { id: 'c121', title: 'Hex to Decimal', difficulty: 'Intermediate', description: 'Convert hex string to decimal', testcases: [{ in: '1a', out: '26' }] },
+            { id: 'c122', title: 'Sum of Odds', difficulty: 'Beginner', description: 'Sum odd numbers in input', testcases: [{ in: '1 3 4', out: '4' }] },
+            { id: 'c123', title: 'Even Index Chars', difficulty: 'Beginner', description: 'Print even indexed chars in string', testcases: [{ in: 'abcdef', out: 'ace' }] },
+            { id: 'c124', title: 'Odd Index Chars', difficulty: 'Beginner', description: 'Print odd indexed chars', testcases: [{ in: 'abcdef', out: 'bdf' }] },
+            { id: 'c125', title: 'Remove Non-Alphabets', difficulty: 'Intermediate', description: 'Remove all non-alphabet chars', testcases: [{ in: 'a1b!@c#', out: 'abc' }] },
+            { id: 'c126', title: 'Sum of Digits Until One', difficulty: 'Intermediate', description: 'Repeat digit sum until single digit', testcases: [{ in: '9875', out: '2' }] },
+            { id: 'c127', title: 'First Uppercase', difficulty: 'Beginner', description: 'First uppercase letter in string', testcases: [{ in: 'abcDef', out: 'D' }] },
+            { id: 'c128', title: 'Left Rotation', difficulty: 'Beginner', description: 'Left rotate array by k steps', testcases: [{ in: '1 2 3 4 5\n2', out: '3 4 5 1 2' }] },
+            { id: 'c129', title: 'Right Rotation', difficulty: 'Beginner', description: 'Right rotate array by k steps', testcases: [{ in: '1 2 3 4 5\n2', out: '4 5 1 2 3' }] },
+            { id: 'c130', title: 'Product of Array', difficulty: 'Beginner', description: 'Product of all elements', testcases: [{ in: '2 3 4', out: '24' }] },
+            { id: 'c131', title: 'Time Conversion', difficulty: 'Intermediate', description: 'Convert 12h to 24h format', testcases: [{ in: '07:45PM', out: '19:45' }] },
+            { id: 'c132', title: 'Currency Format', difficulty: 'Beginner', description: 'Print number with commas', testcases: [{ in: '1234567', out: '1,234,567' }] },
+            { id: 'c133', title: 'String Suffix Check', difficulty: 'Beginner', description: 'Does string end with suffix?', testcases: [{ in: 'hello world\nworld', out: 'true' }] },
+            { id: 'c134', title: 'Array Reversal', difficulty: 'Beginner', description: 'Reverse the given array', testcases: [{ in: '4 3 2 1', out: '1 2 3 4' }] },
+            { id: 'c135', title: 'Count Positive', difficulty: 'Beginner', description: 'Count positive numbers', testcases: [{ in: '-3 -2 0 2 5', out: '2' }] },
+            { id: 'c136', title: 'Remove Negative', difficulty: 'Beginner', description: 'Remove negative numbers', testcases: [{ in: '-1 2 -3 4', out: '2 4' }] },
+            { id: 'c137', title: 'Number Palindrome Check', difficulty: 'Beginner', description: 'Is number a palindrome?', testcases: [{ in: '1441', out: 'true' }] },
+            { id: 'c138', title: 'Sum of Series', difficulty: 'Beginner', description: 'Sum 1+2+...+N', testcases: [{ in: '6', out: '21' }] },
+            { id: 'c139', title: 'Longest Increasing Streak', difficulty: 'Intermediate', description: 'Longest increasing contiguous subsequence', testcases: [{ in: '1 2 2 3 4 1 2', out: '3' }] },
+            { id: 'c140', title: 'Max Subarray Product', difficulty: 'Advanced', description: 'Maximum product of subarray', testcases: [{ in: '2 3 -2 4', out: '6' }] },
+            { id: 'c141', title: 'Unique Pairs', difficulty: 'Intermediate', description: 'Count unique pairs adding to K', testcases: [{ in: '1 5 7 -1\n6', out: '2' }] },
+            { id: 'c142', title: 'Sum Triangle', difficulty: 'Beginner', description: 'Build sum triangle from array', testcases: [{ in: '1 2 3 4 5', out: '48' }] },
+            { id: 'c143', title: 'Triplet Sum', difficulty: 'Advanced', description: 'Find triplets summing to K', testcases: [{ in: '1 2 3 4 5\n9', out: '3' }] },
+            { id: 'c144', title: 'Array Reverse in Groups', difficulty: 'Intermediate', description: 'Reverse array in groups of K', testcases: [{ in: '1 2 3 4 5 6 7 8\n3', out: '3 2 1 6 5 4 8 7' }] },
+            { id: 'c145', title: 'Anagram Grouping', difficulty: 'Advanced', description: 'Group words by anagram', testcases: [{ in: 'bat tab cat tac', out: '[bat tab] [cat tac]' }] },
+            { id: 'c146', title: 'Minimum Difference Pair', difficulty: 'Intermediate', description: 'Find pair with minimum difference', testcases: [{ in: '1 5 3 19 18 25', out: '18 19' }] },
+            { id: 'c147', title: 'Missing Number', difficulty: 'Beginner', description: 'Find missing number in 1-N', testcases: [{ in: '1 2 4 5\n5', out: '3' }] },
+            { id: 'c148', title: 'Largest Gap', difficulty: 'Intermediate', description: 'Largest gap consecutive elements', testcases: [{ in: '2 4 1 9', out: '5' }] },
+            { id: 'c149', title: 'Multiples of 3 and 5', difficulty: 'Beginner', description: 'Sum numbers below N divisible by 3 or 5', testcases: [{ in: '10', out: '23' }] },
+            { id: 'c150', title: 'Find Majority Element', difficulty: 'Advanced', description: 'Element appearing >N/2 times', testcases: [{ in: '2 2 1 1 1 2 2', out: '2' }] },
+            { id: 'c151', title: 'Find First Repeating', difficulty: 'Intermediate', description: 'First repeating element', testcases: [{ in: '10 5 3 4 3 5 6', out: '5' }] },
+            { id: 'c152', title: 'Find First Non-Repeating', difficulty: 'Intermediate', description: 'First non-repeating element', testcases: [{ in: '4 5 4 5 3 2', out: '3' }] },
+            { id: 'c153', title: 'Count Vowel Words', difficulty: 'Beginner', description: 'Words starting with vowel', testcases: [{ in: 'apple orange dog cat', out: '2' }] },
+            { id: 'c154', title: 'Find Odd Occurrence', difficulty: 'Intermediate', description: 'Element occurring odd times', testcases: [{ in: '2 3 2 4 4 4 3 3', out: '4' }] },
+            { id: 'c155', title: 'Find Even Occurrence', difficulty: 'Intermediate', description: 'Element occurring even times', testcases: [{ in: '2 3 2 4 4 4 3 3', out: '2' }] },
+            { id: 'c156', title: 'String Char Histogram', difficulty: 'Intermediate', description: 'Histogram of each char', testcases: [{ in: 'aabbccc', out: 'a:2 b:2 c:3' }] },
+            { id: 'c157', title: 'Capitalize First Letter', difficulty: 'Beginner', description: 'Capitalize only first letter', testcases: [{ in: 'hello world', out: 'Hello world' }] },
+            { id: 'c158', title: 'Sum Divisible by K', difficulty: 'Beginner', description: 'Sum numbers divisible by K', testcases: [{ in: '1 2 3 4 5 6\n2', out: '12' }] },
+            { id: 'c159', title: 'Product of Digits', difficulty: 'Beginner', description: 'Multiply all digits', testcases: [{ in: '123', out: '6' }] },
+            { id: 'c160', title: 'Count Word Occurrences', difficulty: 'Intermediate', description: 'Frequency of each word', testcases: [{ in: 'apple orange apple', out: 'apple:2 orange:1' }] },
+            { id: 'c161', title: 'Sum All Elements', difficulty: 'Beginner', description: 'Sum every number', testcases: [{ in: '9 4 3', out: '16' }] },
+            { id: 'c162', title: 'Factorial Digit Sum', difficulty: 'Intermediate', description: 'Sum digits of factorial', testcases: [{ in: '5', out: '3' }] },
+            { id: 'c163', title: 'Sum Except Self', difficulty: 'Advanced', description: 'Array where each element is sum of others', testcases: [{ in: '1 2 3 4', out: '9 8 7 6' }] },
+            { id: 'c164', title: 'Find Kth Largest', difficulty: 'Intermediate', description: 'Find Kth largest element', testcases: [{ in: '4 6 2 8 1\n2', out: '6' }] },
+            { id: 'c165', title: 'Matrix Diagonal Difference', difficulty: 'Intermediate', description: 'Absolute difference of diagonals', testcases: [{ in: '11 2 4\n4 5 6\n10 8 -12', out: '15' }] },
+            { id: 'c166', title: 'Reverse Sentence', difficulty: 'Beginner', description: 'Reverse words in a sentence', testcases: [{ in: 'I like pizza', out: 'pizza like I' }] },
+            { id: 'c167', title: 'Last Two Swap', difficulty: 'Beginner', description: 'Swap last two digits', testcases: [{ in: '12345', out: '12354' }] },
+            { id: 'c168', title: 'Sum Non-Zero', difficulty: 'Beginner', description: 'Sum elements that are not zero', testcases: [{ in: '1 0 2 0 3', out: '6' }] },
+            { id: 'c169', title: 'All Odd First', difficulty: 'Intermediate', description: 'Move all odd numbers to start', testcases: [{ in: '2 4 1 3 5', out: '1 3 5 2 4' }] },
+            { id: 'c170', title: 'Array to String', difficulty: 'Beginner', description: 'Concatenate array to space-separated string', testcases: [{ in: '1 2 3', out: '1 2 3' }] },
+            { id: 'c171', title: 'Longest Word Length', difficulty: 'Intermediate', description: 'Length of longest word in string', testcases: [{ in: 'The quick brown fox', out: '5' }] },
+            { id: 'c172', title: 'Max Char Frequency', difficulty: 'Intermediate', description: 'Most frequent char in string', testcases: [{ in: 'aabbbcc', out: 'b' }] },
+            { id: 'c173', title: 'Sum Square Matrix Border', difficulty: 'Intermediate', description: 'Sum of border in square matrix', testcases: [{ in: '1 2 3\n4 5 6\n7 8 9', out: '40' }] },
+            { id: 'c174', title: 'Pairs With Difference K', difficulty: 'Intermediate', description: 'Count pairs with diff K', testcases: [{ in: '1 5 3 4 2\n2', out: '3' }] },
+            { id: 'c175', title: 'Kth Smallest Element', difficulty: 'Intermediate', description: 'Find Kth smallest in array', testcases: [{ in: '7 10 4 3 20 15\n3', out: '7' }] },
+            { id: 'c176', title: 'Sum of Left Diagonal', difficulty: 'Intermediate', description: 'Sum of left diagonal in matrix', testcases: [{ in: '1 0 0\n0 1 0\n0 0 1', out: '3' }] },
+            { id: 'c177', title: 'Unique String', difficulty: 'Beginner', description: 'String with all unique characters?', testcases: [{ in: 'world', out: 'true' }] },
+            { id: 'c178', title: 'Remove Middle', difficulty: 'Beginner', description: 'Remove middle element(s) from array', testcases: [{ in: '1 2 3 4 5', out: '1 2 4 5' }] },
+            { id: 'c179', title: 'Find Common Prefix', difficulty: 'Intermediate', description: 'Longest prefix in two strings', testcases: [{ in: 'flight\nflute', out: 'fl' }] },
+            { id: 'c180', title: 'Distinct Elements', difficulty: 'Beginner', description: 'Count unique elements', testcases: [{ in: '1 2 2 3', out: '3' }] },
+            { id: 'c181', title: 'Filter By Length', difficulty: 'Intermediate', description: 'Words longer than K chars', testcases: [{ in: 'apple bat cat elephant\n3', out: 'apple elephant' }] },
+            { id: 'c182', title: 'Product of Subset', difficulty: 'Advanced', description: 'All possible products from subset', testcases: [{ in: '2 3', out: '1 2 3 6' }] },
+            { id: 'c183', title: 'Count Alpha Words', difficulty: 'Beginner', description: 'Words with only alphabets', testcases: [{ in: 'hello $wow yes', out: '2' }] },
+            { id: 'c184', title: 'Sum Even Digits', difficulty: 'Beginner', description: 'Sum of even digits in number', testcases: [{ in: '123456', out: '12' }] },
+            { id: 'c185', title: 'Is Power of 3', difficulty: 'Beginner', description: 'Number is power of 3?', testcases: [{ in: '27', out: 'true' }] },
+            { id: 'c186', title: 'Unique Pairs With Sum', difficulty: 'Intermediate', description: 'Unique pairs with given sum', testcases: [{ in: '1 5 7 -1 5\n6', out: '2' }] },
+            { id: 'c187', title: 'Find All Divisors', difficulty: 'Beginner', description: 'List all divisors of N', testcases: [{ in: '28', out: '1 2 4 7 14 28' }] },
+            { id: 'c188', title: 'Capitalize Odd Index', difficulty: 'Intermediate', description: 'Capitalize odd-indexed letters', testcases: [{ in: 'abcdef', out: 'aBcDeF' }] },
+            { id: 'c189', title: 'Find Middle Value', difficulty: 'Intermediate', description: 'Find middle value in array', testcases: [{ in: '4 8 6', out: '6' }] },
+            { id: 'c190', title: 'Reverse Matrix Columns', difficulty: 'Intermediate', description: 'Reverse each matrix column', testcases: [{ in: '1 2\n3 4', out: '3 4\n1 2' }] },
+            { id: 'c191', title: 'Count Local Maxima', difficulty: 'Intermediate', description: 'Count local maxima in array', testcases: [{ in: '1 2 1 3 4 1', out: '2' }] },
+            { id: 'c192', title: 'Sum of Digits in Range', difficulty: 'Advanced', description: 'Sum all digits of numbers in range', testcases: [{ in: '13 15', out: '18' }] },
+            { id: 'c193', title: 'Count Palindromic Words', difficulty: 'Intermediate', description: 'Count palindromic words in line', testcases: [{ in: 'level noon deed noon', out: '3' }] },
+            { id: 'c194', title: 'Sum After Deletion', difficulty: 'Intermediate', description: 'Sum after removing given numbers', testcases: [{ in: '1 2 3 4 5\n2 4', out: '9' }] },
+            { id: 'c195', title: 'Sort String Desc', difficulty: 'Beginner', description: 'Sort letters in descending order', testcases: [{ in: 'spare', out: 'srepa' }] },
+            { id: 'c196', title: 'Array Rotate Odd Indices', difficulty: 'Intermediate', description: 'Rotate only odd indices right', testcases: [{ in: '1 2 3 4 5', out: '1 5 3 2 4' }] },
+            { id: 'c197', title: 'Check All Even', difficulty: 'Beginner', description: 'Are all numbers even?', testcases: [{ in: '2 4 6 8', out: 'true' }] },
+            { id: 'c198', title: 'GCD of Consecutive', difficulty: 'Advanced', description: 'GCD of consecutive number pairs', testcases: [{ in: '8 12 16 24', out: '4 4 8' }] },
+            { id: 'c199', title: 'Array Zigzag', difficulty: 'Intermediate', description: 'Rearrange in zigzag order', testcases: [{ in: '4 3 7 8 6 2 1', out: '3 7 4 8 2 6 1' }] },
+            { id: 'c200', title: 'Median of Medians', difficulty: 'Advanced', description: 'Median of list of medians', testcases: [{ in: '1 2 3\n4 5 6\n7 8 9', out: '5' }] }
+        */
+        ];
+
+        async function loadChallenges() {
+            const list = document.getElementById('ch-list');
+            list.innerHTML = '<em>Loading...</em>';
+            try {
+                if (!db) throw new Error('Firestore not initialized');
+
+                // Load challenges
+                const snap = await db.collection('challenges').orderBy('title').get();
+                const arr = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                challengesList = arr.length ? arr : fallbackChallenges.slice();
+
+                // Fetch current user's completed challenges
+                userCompletedChallenges.clear();
+                if (auth && auth.currentUser) {
+                    const uid = auth.currentUser.uid;
+                    const progSnap = await db.collection('users').doc(uid).collection('progress').get();
+                    progSnap.forEach(doc => userCompletedChallenges.add(doc.id));
+                }
+
+                renderChallenges(challengesList);
+
+            } catch (err) {
+                challengesList = fallbackChallenges.slice();
+                renderChallenges(challengesList);
+            }
+        }
+
+        function renderChallenges(arr) {
+            const list = document.getElementById('ch-list');
+            list.innerHTML = '';
+            arr.forEach(c => {
+                const el = document.createElement('div');
+                el.className = 'card';
+                el.innerHTML = `<h3>${c.title}</h3>
+                        <p class='muted small'>${c.difficulty}</p>
+                        <p class='small'>${c.description}</p>`;
+
+                const footer = document.createElement('div');
+                footer.style.marginTop = '8px';
+
+                const btn = document.createElement('button');
+                btn.className = 'btn primary';
+
+                if (userCompletedChallenges.has(c.id)) {
+                    btn.textContent = 'Rewrite';
+                    btn.onclick = () => openEditor(c);
+                } else {
+                    btn.textContent = 'Solve';
+                    btn.onclick = () => openEditor(c);
+                }
+
+                footer.appendChild(btn);
+                el.appendChild(footer);
+                list.appendChild(el);
+            });
+        }
+
+        function openEditor(challenge) {
+            activeChallenge = challenge;
+            document.getElementById('editor-title').textContent = 'Editor - ' + (challenge.title || 'Challenge');
+            document.getElementById('testcases').textContent = (challenge.testcases || []).map((t, i) =>
+                `#${i + 1} Input:\n${t.in}\nExpected:\n${t.out}`
+            ).join('\n\n') || 'No testcases';
+            document.getElementById('stdin').value = (challenge.testcases && challenge.testcases[0] && challenge.testcases[0].in) || '';
+            document.getElementById('code-area').value = templateFor(+document.getElementById('lang-select').value);
+            show('editor');
+        }
+
+        function templateFor(langId) {
+            if (langId === 63) return "// Node.js\nconst fs=require('fs');\nconst data=fs.readFileSync(0,'utf8');\nconsole.log(data.trim());";
+            if (langId === 71) return "# Python 3\nimport sys\nprint(sys.stdin.read().strip())";
+            return "// starter";
+        }
+
+        async function runCode() {
+            const source_code = document.getElementById('code-area').value;
+            const language_id = +document.getElementById('lang-select').value;
+            const stdin = document.getElementById('stdin').value || '';
+            document.getElementById('output').textContent = 'Running...';
+            try {
+                const token = await judge0Create(source_code, language_id, stdin);
+                const result = await judge0Poll(token);
+                document.getElementById('output').textContent = judge0Format(result);
+            } catch (err) {
+                document.getElementById('output').textContent = 'Error: ' + (err.message || err);
+            }
+        }
+
+        async function submitSolution() {
+            if (!auth || !auth.currentUser) {
+                alert('Please sign in to submit');
+                show('auth');
+                return;
+            }
+
+            const uid = auth.currentUser.uid;
+            const chId = activeChallenge && (activeChallenge.id || ('ch-' + Date.now()));
+            if (!chId) return alert('No active challenge to submit');
+
+            const source_code = document.getElementById('code-area').value;
+            const language_id = +document.getElementById('lang-select').value;
+            const stdin = (activeChallenge.testcases && activeChallenge.testcases[0] && activeChallenge.testcases[0].in) || '';
+
+            document.getElementById('output').textContent = 'Checking solution...';
+
+            try {
+                const token = await judge0Create(source_code, language_id, stdin);
+                const result = await judge0Poll(token);
+                const output = (result.stdout || '').trim();
+                const expected = (activeChallenge.testcases && activeChallenge.testcases[0] && activeChallenge.testcases[0].out || '').trim();
+
+                if (output !== expected) {
+                    document.getElementById('output').textContent =
+                        `Output mismatch!\nExpected: ${expected}\nGot: ${output}`;
+                    alert('Cannot submit output does not match expected result.');
+                    return;
+                }
+
+                await db.collection('users').doc(uid).collection('progress').doc(String(chId)).set({ completed: true, completedAt: new Date() });
+                alert('Solution submitted successfully!');
+                await refreshProgress();
+
+            } catch (err) {
+                document.getElementById('output').textContent = 'Error: ' + (err.message || err);
+                alert('Submit failed: ' + (err.message || err));
+            }
+        }
+
+        async function judge0Create(source_code, language_id, stdin) {
+            const url = JUDGE0_SUBMISSIONS_URL + '?base64_encoded=false&wait=false';
+            const headers = { 'Content-Type': 'application/json' };
+            if (JUDGE0_API_KEY) headers['X-RapidAPI-Key'] = JUDGE0_API_KEY;
+            const res = await fetch(url, { method: 'POST', headers, body: JSON.stringify({ source_code, language_id, stdin }) });
+            if (!res.ok) throw new Error('Judge0 create failed: ' + res.status);
+            const data = await res.json();
+            if (!data.token) throw new Error('No token in Judge0 response');
+            return data.token;
+        }
+
+        async function judge0Poll(token, max = 25, delay = 1000) {
+            const url = JUDGE0_GET_URL + encodeURIComponent(token) + '?base64_encoded=false';
+            const headers = {};
+            if (JUDGE0_API_KEY) headers['X-RapidAPI-Key'] = JUDGE0_API_KEY;
+            for (let i = 0; i < max; i++) {
+                const res = await fetch(url, { headers });
+                if (!res.ok) throw new Error('Judge0 poll failed: ' + res.status);
+                const data = await res.json();
+                if (data.status && data.status.id > 2) return data;
+                await sleep(delay);
+            }
+            throw new Error('Execution timeout');
+        }
+
+        function judge0Format(res) {
+            if (res.compile_output) return 'Compile Error:\n' + res.compile_output;
+            if (res.stderr) return 'Runtime Error:\n' + res.stderr;
+            if (res.stdout) return 'Output:\n' + res.stdout;
+            return 'Status: ' + (res.status && res.status.description || JSON.stringify(res));
+        }
+
+        async function refreshProgress() {
+            const progressCard = document.getElementById('progress-card');
+            const statCompleted = document.getElementById('stat-completed');
+            const statPercent = document.getElementById('stat-percent');
+
+            if (!auth) { progressCard.textContent = 'Auth not initialized.'; return; }
+
+            const user = auth.currentUser;
+            if (!user) { progressCard.textContent = 'Please sign in.'; return; }
+
+            const uid = user.uid;
+
+            try {
+                const snap = await db.collection('users').doc(uid).collection('progress').get();
+                const completed = snap.empty ? 0 : snap.size;
+                const total = (typeof challengesList !== 'undefined' ? challengesList.length : 0) || fallbackChallenges.length;
+                const percent = total ? Math.round((completed / total) * 100) : 0;
+
+                statCompleted.textContent = `Completed: ${completed} / ${total}`;
+                statPercent.textContent = `Progress: ${percent}%`;
+                progressCard.textContent = `${completed} challenges completed — ${percent}%`;
+
+                await loadLeaderboard();
+            } catch (err) {
+                console.warn('Error fetching progress:', err);
+                progressCard.textContent = 'No progress (offline)';
+            }
+        }
+
+        async function loadLeaderboard() {
+            const list = document.getElementById('leader-list');
+            list.innerHTML = '<li>Loading...</li>';
+            try {
+                const snap = await db.collection('leaderboard').orderBy('points', 'desc').limit(20).get();
+                let arr = snap.docs.map(d => d.data());
+                if (!arr.length) {
+                    const usersSnap = await db.collection('users').get();
+                    const users = usersSnap.docs.map(d => ({ uid: d.id, ...d.data() }));
+                    const computed = await Promise.all(users.map(async u => {
+                        try {
+                            const pSnap = await db.collection('users').doc(u.uid).collection('progress').get();
+                            const completed = pSnap.size;
+                            return { name: u.name || u.email || ('user-' + u.uid.slice(0, 6)), points: completed * 10 };
+                        } catch (e) { return { name: u.name || u.email || ('user-' + u.uid.slice(0, 6)), points: 0 }; }
+                    }));
+                    arr = computed.sort((a, b) => b.points - a.points).slice(0, 20);
+                }
+                if (!arr.length) arr = [{ name: 'Sample User', points: 0 }];
+                list.innerHTML = '';
+                arr.forEach(p => { const li = document.createElement('li'); li.textContent = `${p.name} — ${p.points} pts`; list.appendChild(li); });
+            } catch (err) {
+                console.warn(err);
+                list.innerHTML = '<li>Offline - cannot load leaderboard</li>';
+            }
+        }
+
+        function esc(s) { if (!s) return ''; return String(s).replace(/[&<>\"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        // INITIAL LOAD
+        show('landing');
+        challengesList = fallbackChallenges.slice();
+        loadChallenges();
+
+
+    </script>
+</body>
+
+</html>
